@@ -24,7 +24,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav style={{ position: "sticky", top: "0px" }}>
+    <nav style={{ position: "sticky", top: "0px", width: "100%", zIndex: 3 }}>
       {/* menu for big screens */}
       <div className={styles.navbar_wrapper}>
         <div className={styles.left_navbar_content}>
