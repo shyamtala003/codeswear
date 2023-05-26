@@ -25,13 +25,46 @@ const index = () => {
           className="mySwiper"
         >
           <SwiperSlide>
-            <img src="/1.webp" alt="" />
+            <img
+              src="/1.webp"
+              alt=""
+              className="big-screen-only"
+              style={{ minHeight: "300px", objectFit: "cover" }}
+            />
+            <img
+              src="/m1.webp"
+              alt=""
+              style={{ minHeight: "300px" }}
+              className="mobile-only"
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/2.webp" alt="" />
+            <img
+              src="/2.webp"
+              className="big-screen-only"
+              alt=""
+              style={{ minHeight: "300px" }}
+            />
+            <img
+              src="/m2.webp"
+              alt=""
+              style={{ minHeight: "300px" }}
+              className="mobile-only"
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/3.webp" alt="" />
+            <img
+              className="big-screen-only"
+              src="/3.webp"
+              alt=""
+              style={{ minHeight: "300px" }}
+            />
+            <img
+              src="/m3.webp"
+              alt=""
+              style={{ minHeight: "300px" }}
+              className="mobile-only"
+            />
           </SwiperSlide>
         </Swiper>
       </div>
