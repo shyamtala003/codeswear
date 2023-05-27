@@ -1,5 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Head from "next/head";
 
 // Import Swiper styles
 import "swiper/css";
@@ -10,6 +11,16 @@ import { Autoplay, Pagination, Navigation } from "swiper";
 const index = () => {
   return (
     <>
+      <Head>
+        <title>
+          Online Shopping - Buy Tshirts, Hoodies, Mugs, Sweatshirts, Caps and
+          Mousepads at best Price in India on CodesWear.com
+        </title>
+        <meta
+          name="description"
+          content="CodesWear is an Online Shopping site for Geek Clothing. Shop from a wide range of Tshirts, Hoodies, Mugs, Sweatshirts, Caps and Mousepads at the best prices."
+        ></meta>
+      </Head>
       <div className="slider">
         <Swiper
           pagination={{

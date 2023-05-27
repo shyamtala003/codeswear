@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { Squash as Hamburger } from "hamburger-react";
-import { AiOutlineSearch } from "react-icons/ai";
-import { BsBag } from "react-icons/bs";
+import { Squash as Hamburger, Turn } from "hamburger-react";
+import {
+  AiOutlineSearch,
+  AiOutlineTwitter,
+  AiFillLinkedin,
+} from "react-icons/ai";
+import { BsBag, BsInstagram, BsFacebook } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import { GrClose } from "react-icons/gr";
 import styles from "../styles/Navabar.module.css";
@@ -20,11 +24,17 @@ const Navbar = () => {
   }
 
   function toggleMenubar() {
+    // code for removing sccrolling on menu opening
+    if (!isOpen) {
+      document.body.style.overflowY = "hidden";
+    } else {
+      document.body.style.overflowY = "auto";
+    }
     setOpen(!isOpen);
   }
 
   return (
-    <nav style={{ position: "sticky", top: "0px", width: "100%", zIndex: 3 }}>
+    <nav className={styles.navbar}>
       {/* menu for big screens */}
       <div className={styles.navbar_wrapper}>
         <div className={styles.left_navbar_content}>
@@ -83,9 +93,14 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* code for small and medium  screen */}
       <div className={styles.navbar_responsive}>
         <div className={styles.navbar_left_content}>
-          <Hamburger size={20} onToggle={toggleMenubar}></Hamburger>
+          <Hamburger
+            size={20}
+            toggled={isOpen}
+            toggle={toggleMenubar}
+          ></Hamburger>
           <AiOutlineSearch className={styles.icon} />
         </div>
         <div className={styles.navbar_center_content}>
@@ -97,52 +112,70 @@ const Navbar = () => {
             <BiUser className={styles.icon} />
           </div>
         </div>
-
-        <ul
-          className={styles.navbar_links}
-          style={isOpen ? { left: "0%" } : null}
+        <div
+          className={styles.navbar_link_content}
+          style={isOpen ? { left: "0%", minWidth: "100%", opacity: 1 } : null}
         >
-          <li className={styles.navbar_link}>
-            <Link href={"/"} className={styles.link}>
-              Tshirts
-            </Link>
-          </li>
-          <li className={styles.navbar_link}>
-            <Link href={"/"} className={styles.link}>
-              Hoodies
-            </Link>
-          </li>
-          <li className={styles.navbar_link}>
-            <Link href={"/"} className={styles.link}>
-              Sweatshirts
-            </Link>
-          </li>
-          <li className={styles.navbar_link}>
-            <Link href={"/"} className={styles.link}>
-              Mugs
-            </Link>
-          </li>
-          <li className={styles.navbar_link}>
-            <Link href={"/"} className={styles.link}>
-              Zippper
-            </Link>
-          </li>
-          <li className={styles.navbar_link}>
-            <Link href={"/"} className={styles.link}>
-              Hoodies
-            </Link>
-          </li>
-          <li className={styles.navbar_link}>
-            <Link href={"/"} className={styles.link}>
-              Mousepads
-            </Link>
-          </li>
-          <li className={styles.navbar_link}>
-            <Link href={"/"} className={styles.link}>
-              Caps
-            </Link>
-          </li>
-        </ul>
+          <ul className={styles.navbar_links}>
+            <li className={styles.navbar_link}>
+              <Link href={"/"} className={styles.link}>
+                Tshirts
+              </Link>
+            </li>
+            <li className={styles.navbar_link}>
+              <Link href={"/"} className={styles.link}>
+                Hoodies
+              </Link>
+            </li>
+            <li className={styles.navbar_link}>
+              <Link href={"/"} className={styles.link}>
+                Sweatshirts
+              </Link>
+            </li>
+            <li className={styles.navbar_link}>
+              <Link href={"/"} className={styles.link}>
+                Mugs
+              </Link>
+            </li>
+            <li className={styles.navbar_link}>
+              <Link href={"/"} className={styles.link}>
+                Zippper
+              </Link>
+            </li>
+            <li className={styles.navbar_link}>
+              <Link href={"/"} className={styles.link}>
+                Hoodies
+              </Link>
+            </li>
+            <li className={styles.navbar_link}>
+              <Link href={"/"} className={styles.link}>
+                Mousepads
+              </Link>
+            </li>
+            <li className={styles.navbar_link}>
+              <Link href={"/"} className={styles.link}>
+                Caps
+              </Link>
+            </li>
+
+            {/* social media links */}
+            <li className={styles.social_links}>
+              <Link href={"/"} className={styles.social_link}>
+                <BsInstagram></BsInstagram>
+              </Link>
+              <Link href={"/"} className={styles.social_link}>
+                <BsFacebook></BsFacebook>
+              </Link>
+              <Link href={"/"} className={styles.social_link}>
+                <AiFillLinkedin></AiFillLinkedin>
+              </Link>
+              <Link href={"/"} className={styles.social_link}>
+                <AiOutlineTwitter></AiOutlineTwitter>
+              </Link>
+            </li>
+          </ul>
+          <div className={styles.navbar_closer} onClick={toggleMenubar}></div>
+        </div>
       </div>
     </nav>
   );

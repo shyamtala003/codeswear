@@ -11,3 +11,16 @@
 img {
   max-width: 100%;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ec008c, #fc6767);
+}
