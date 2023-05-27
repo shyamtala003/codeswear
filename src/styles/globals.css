@@ -24,3 +24,8 @@ img {
   border-radius: 16px;
   background: linear-gradient(180deg, #ec008c, #fc6767);
 }
+
+.swiper-pagination {
+  color: #000000 !important;
+  font-weight: 500;
+}

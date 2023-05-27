@@ -45,7 +45,7 @@ const Navbar = () => {
           <div className={styles.navbar_content}>
             <ul className={styles.nav_links}>
               <li className={styles.nav_link}>
-                <Link href={"/"}>Tshirts</Link>
+                <Link href={"/tshirt"}>Tshirts</Link>
               </li>
               <li className={styles.nav_link}>
                 <Link href={"/"}>Hoodies</Link>
@@ -118,42 +118,46 @@ const Navbar = () => {
         >
           <ul className={styles.navbar_links}>
             <li className={styles.navbar_link}>
-              <Link href={"/"} className={styles.link}>
+              <Link
+                href={"/tshirt"}
+                className={styles.link}
+                onClick={toggleMenubar}
+              >
                 Tshirts
               </Link>
             </li>
             <li className={styles.navbar_link}>
-              <Link href={"/"} className={styles.link}>
+              <Link href={"/"} className={styles.link} onClick={toggleMenubar}>
                 Hoodies
               </Link>
             </li>
             <li className={styles.navbar_link}>
-              <Link href={"/"} className={styles.link}>
+              <Link href={"/"} className={styles.link} onClick={toggleMenubar}>
                 Sweatshirts
               </Link>
             </li>
             <li className={styles.navbar_link}>
-              <Link href={"/"} className={styles.link}>
+              <Link href={"/"} className={styles.link} onClick={toggleMenubar}>
                 Mugs
               </Link>
             </li>
             <li className={styles.navbar_link}>
-              <Link href={"/"} className={styles.link}>
+              <Link href={"/"} className={styles.link} onClick={toggleMenubar}>
                 Zippper
               </Link>
             </li>
             <li className={styles.navbar_link}>
-              <Link href={"/"} className={styles.link}>
+              <Link href={"/"} className={styles.link} onClick={toggleMenubar}>
                 Hoodies
               </Link>
             </li>
             <li className={styles.navbar_link}>
-              <Link href={"/"} className={styles.link}>
+              <Link href={"/"} className={styles.link} onClick={toggleMenubar}>
                 Mousepads
               </Link>
             </li>
             <li className={styles.navbar_link}>
-              <Link href={"/"} className={styles.link}>
+              <Link href={"/"} className={styles.link} onClick={toggleMenubar}>
                 Caps
               </Link>
             </li>

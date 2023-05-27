@@ -1,10 +1,9 @@
 .footer_wrapper {
   width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  gap: 28px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 16px;
   padding: 36px 3%;
-  flex-wrap: wrap;
 }
 
 .column {
@@ -13,10 +12,6 @@
 
 .column .logo {
   width: 220px;
-}
-
-.column:first-child {
-  max-width: 200px;
 }
 .column h1 {
   margin-bottom: 12px;
@@ -55,7 +50,7 @@
   color: #ffffff;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 445px) {
   .column {
     text-align: center;
   }

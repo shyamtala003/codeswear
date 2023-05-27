@@ -1,0 +1,89 @@
+.tshirt_item_card {
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid rgba(0, 0, 0, 0.1); */
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.tshirt_img_wrapper {
+  /* display: none; */
+  max-height: 280px;
+  height: 280px;
+  overflow: hidden;
+}
+
+.slider {
+  height: 100% !important;
+}
+
+.mySwiper {
+  height: 100% !important;
+}
+
+.tshirt_info_wrapper {
+  padding-inline: 12px;
+  padding-block: 16px;
+}
+
+.company_name {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #878787;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.tshirt_desc {
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #212121;
+  text-align: center;
+}
+
+.tshirt_price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #212121;
+}
+
+.discount_strike {
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: line-through;
+  color: #878787;
+}
+
+.discount_percentage {
+  font-size: 12px;
+  font-weight: 600;
+  color: #388e3c;
+}
+
+.tshirt_size {
+  text-align: center;
+}
+
+.size {
+  color: #878787;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.n_of_size {
+  margin-left: 4px;
+  font-size: 14px;
+  color: #212121;
+  letter-spacing: 1px;
+  font-weight: 600;
+}

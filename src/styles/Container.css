@@ -1,0 +1,7 @@
+/* code for item container of every product page like tshirt,mug,cap,hoodies etc  */
+.items_container {
+  padding: 18px 3%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 30px;
+}
