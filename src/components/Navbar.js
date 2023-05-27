@@ -10,10 +10,12 @@ import { BsBag, BsInstagram, BsFacebook } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import { GrClose } from "react-icons/gr";
 import styles from "../styles/Navabar.module.css";
+import CartToggler from "../context/CartToggler";
 
 const Navbar = () => {
   let [searchText, setsearchText] = useState("");
   const [isOpen, setOpen] = useState(false);
+  const { cart, togglerCart } = CartToggler();
 
   function handleSearch(e) {
     setsearchText(e.target.value);
@@ -89,7 +91,17 @@ const Navbar = () => {
           <Link href={"/"} className={styles.signup_btn}>
             Signup
           </Link>
-          <BsBag className={styles.cart_btn} />
+          <BsBag
+            className={styles.cart_btn}
+            onClick={() => {
+              if (cart) {
+                document.body.overflowY = "hidden";
+              } else {
+                document.body.overflowY = "auto";
+              }
+              togglerCart(!cart);
+            }}
+          />
         </div>
       </div>
 
@@ -107,7 +119,20 @@ const Navbar = () => {
           <img src="/logo.png" alt="logo" />
         </div>
         <div className={styles.navbar_right_content}>
-          <BsBag className={styles.icon} />
+          <BsBag
+            className={styles.icon}
+            onClick={() => {
+              if (cart) {
+                document.body.style.overflowY = "hidden";
+                document.body.style.height = "100vh";
+                console.log("hi");
+              } else {
+                document.body.style.overflowY = "auto";
+                console.log(document.body.style.height);
+              }
+              togglerCart(!cart);
+            }}
+          />
           <div className={styles.user_menu}>
             <BiUser className={styles.icon} />
           </div>
