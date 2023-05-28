@@ -19,12 +19,6 @@
   bottom: 0 !important;
 }
 
-.swiper-button-next:after,
-.swiper-button-prev:after {
-  font-size: 14px !important;
-  color: #ec008c !important;
-}
-
 .big_screen_slider {
   display: none !important;
 }

@@ -12,7 +12,7 @@ const Cart = () => {
     <>
       <div
         className={styles.cart}
-        style={cart ? { left: "0%", opacity: 1, width: "100%" } : {}}
+        style={cart ? { left: "0%", opacity: 1 } : {}}
       >
         <div className={styles.cart_close_btn}>
           <GrClose
