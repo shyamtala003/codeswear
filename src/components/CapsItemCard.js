@@ -28,10 +28,10 @@ const CapsItemCard = () => {
                 <img src="./C1.webp" alt="" />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="./c2.webp" alt="" />
+                <img src="./C2.webp" alt="" />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="./c3.webp" alt="" />
+                <img src="./C3.webp" alt="" />
               </SwiperSlide>
             </Swiper>
           </div>

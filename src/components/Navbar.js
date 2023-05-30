@@ -125,10 +125,8 @@ const Navbar = () => {
               if (cart) {
                 document.body.style.overflowY = "hidden";
                 document.body.style.height = "100vh";
-                console.log("hi");
               } else {
                 document.body.style.overflowY = "auto";
-                console.log(document.body.style.height);
               }
               togglerCart(!cart);
             }}

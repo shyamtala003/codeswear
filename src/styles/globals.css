@@ -46,3 +46,40 @@ img {
   font-size: 16px !important;
   color: #000000 !important;
 }
+
+/* code for slider.js */
+.splide {
+  padding: 0em !important;
+}
+.splide_track {
+  margin-top: 224px !important;
+}
+
+.splide__slide {
+  max-height: 600px;
+}
+
+.splide__slide img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center;
+}
+
+.splide__arrow {
+  width: 40px !important;
+  height: 40px !important;
+  padding: 10px !important;
+  border-radius: 50% !important;
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+.splide__arrow svg {
+  fill: #ec008c !important;
+}
+
+.splide__track--nav > .splide__list > .splide__slide.is-active {
+  border: 2px solid #ec008c !important;
+}

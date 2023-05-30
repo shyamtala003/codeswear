@@ -7,7 +7,6 @@ import CartToggler from "@/context/CartToggler";
 
 const Cart = () => {
   let { cart, togglerCart } = CartToggler();
-  console.log(cart);
   return (
     <>
       <div
