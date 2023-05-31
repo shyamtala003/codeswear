@@ -8,8 +8,8 @@ import Cart from "@/components/Cart";
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <Navbar />
       <Cart />
+      <Navbar />
       <Component {...pageProps} />
       <Footer />
     </>

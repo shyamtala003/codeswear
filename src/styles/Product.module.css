@@ -7,11 +7,9 @@
 }
 
 .wrapper {
-  width: 100%;
-  display: inline-block;
-  max-height: 100%;
   position: sticky !important;
   top: 70px !important;
+  max-height: 100vh;
 }
 
 .product_info {
@@ -178,23 +176,100 @@
 @media screen and (max-width: 1024px) {
   .product_wrapper {
     padding: 18px 3%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    grid-template-columns: 0fr;
+    max-width: 100%;
+    flex-direction: column;
   }
 
   .product_info {
-    width: 90%;
+    max-width: 100%;
   }
 
   .wrapper {
-    width: 90%;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 0px !important;
     max-height: unset;
     position: unset !important;
     top: unset !important;
   }
+}
+
+.delevery_avaibility_form {
+  display: block;
+}
+
+form.delevery_form {
+  margin-top: 24px;
+  width: 100%;
+  display: flex;
+  gap: 18px;
+}
+
+.delevery_form input {
+  width: clamp(70px, 60%, 280px);
+  padding: 8px 10px;
+  border-radius: 4px;
+  caret-color: #ec008c;
+  border: 2px solid #ec008c;
+  outline: none;
+}
+
+.delevery_form button {
+  background: #ec008c;
+  cursor: pointer;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+}
+
+p.available {
+  padding-block: 12px;
+  color: rgb(0, 191, 0);
+}
+
+p.not_available {
+  color: red;
+}
+
+.buy_now {
+  margin-top: 18px;
+  display: block;
+  width: 100%;
+  padding: 8px 18px;
+  background: #ec008c;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 600;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.5 ease-in;
+}
+
+.buy_now:hover {
+  background: transparent;
+  color: #ec008c;
+  border: 2px solid #ec008c;
+}
+
+.add_to_cart {
+  margin-top: 12px;
+  display: block;
+  width: 100%;
+  padding: 8px 18px;
+  background: transparent;
+  border-radius: 4px;
+  color: #ec008c;
+  border-color: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  border: 2px solid #ec008c;
+  transition: all 0.6s ease-in-out;
+}
+
+.add_to_cart:hover {
+  color: #fff;
+  background: #ec008c;
 }

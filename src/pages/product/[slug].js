@@ -16,8 +16,9 @@ import "@splidejs/react-splide/css/core";
 
 const Product = () => {
   let router = useRouter();
-  useEffect(() => {}, [router.isReady]);
-  let { slug } = router.query;
+  useEffect(() => {
+    let { slug } = router.query;
+  }, [router.isReady]);
 
   const mainRef = useRef(null);
   const thumbsRef = useRef(null);
@@ -125,118 +126,141 @@ const Product = () => {
           <span className={styles.bold_text}>Tags:</span> t-shirt, breaking
           code, logo, coding, programming, tech
         </div>
+
         <div className={styles.product_Size_wrapper}>
           <legend className={styles.radio__legend}>
             <span className={styles.radio__legend__label}>Size</span>
             <span className={styles.size_chart_btn}>Size/Fit Guide</span>
           </legend>
+        </div>
 
-          <div className={styles.product_sizes}>
-            <div className={styles.input_group}>
+        <div className={styles.product_sizes}>
+          <div className={styles.input_group}>
+            <input
+              className={styles.size_radio_btn}
+              type="radio"
+              name="size"
+              id="s"
+              value="s"
+              defaultChecked
+            />
+            <label htmlFor="s" className={styles.size_label}>
+              S
+            </label>
+          </div>
+          <div className={styles.input_group}>
+            <input
+              className={styles.size_radio_btn}
+              type="radio"
+              name="size"
+              id="l"
+              value="l"
+            />
+            <label htmlFor="l" className={styles.size_label}>
+              L
+            </label>
+          </div>
+          <div className={styles.input_group}>
+            <input
+              className={styles.size_radio_btn}
+              type="radio"
+              name="size"
+              id="m"
+              value="m"
+            />
+            <label htmlFor="m" className={styles.size_label}>
+              M
+            </label>
+          </div>
+          <div className={styles.input_group}>
+            <input
+              className={styles.size_radio_btn}
+              type="radio"
+              name="size"
+              id="xl"
+              value="xl"
+            />
+            <label htmlFor="xl" className={styles.size_label}>
+              XL
+            </label>
+          </div>
+          <div className={styles.input_group}>
+            <input
+              className={styles.size_radio_btn}
+              type="radio"
+              name="size"
+              id="xxl"
+              value="xxl"
+            />
+            <label htmlFor="xxl" className={styles.size_label}>
+              XXL
+            </label>
+          </div>
+        </div>
+
+        <div className={styles.product_colors}>
+          <div className={styles.product_color_name}>
+            <span>COLOR:</span> LIGHT/BLUE
+          </div>
+          <div className={styles.color_group}>
+            <div className={styles.color_wrapper}>
               <input
-                className={styles.size_radio_btn}
                 type="radio"
-                name="size"
-                id="s"
-                value="s"
+                name="t_shirt_color"
+                id="light/blue"
+                value="light/blue"
                 defaultChecked
               />
-              <label htmlFor="s" className={styles.size_label}>
-                S
+              <label
+                htmlFor="light/blue"
+                className={styles.product_color_label}
+                checked
+              >
+                <img src="/tshirt.avif" alt="" />
               </label>
             </div>
-            <div className={styles.input_group}>
+            <div className={styles.color_wrapper}>
               <input
-                className={styles.size_radio_btn}
                 type="radio"
-                name="size"
-                id="l"
-                value="l"
+                name="t_shirt_color"
+                id="light/dark"
+                value="light/dark"
               />
-              <label htmlFor="l" className={styles.size_label}>
-                L
-              </label>
-            </div>
-            <div className={styles.input_group}>
-              <input
-                className={styles.size_radio_btn}
-                type="radio"
-                name="size"
-                id="m"
-                value="m"
-              />
-              <label htmlFor="m" className={styles.size_label}>
-                M
-              </label>
-            </div>
-            <div className={styles.input_group}>
-              <input
-                className={styles.size_radio_btn}
-                type="radio"
-                name="size"
-                id="xl"
-                value="xl"
-              />
-              <label htmlFor="xl" className={styles.size_label}>
-                XL
-              </label>
-            </div>
-            <div className={styles.input_group}>
-              <input
-                className={styles.size_radio_btn}
-                type="radio"
-                name="size"
-                id="xxl"
-                value="xxl"
-              />
-              <label htmlFor="xxl" className={styles.size_label}>
-                XXL
+              <label
+                htmlFor="light/dark"
+                className={styles.product_color_label}
+              >
+                <img src="/h2.jpg" alt="" />
               </label>
             </div>
           </div>
+        </div>
 
-          <div className={styles.product_colors}>
-            <div className={styles.product_color_name}>
-              <span>COLOR:</span> LIGHT/BLUE
-            </div>
-            <div className={styles.color_group}>
-              <div className={styles.color_wrapper}>
-                <input
-                  type="radio"
-                  name="t_shirt_color"
-                  id="light/blue"
-                  value="light/blue"
-                  defaultChecked
-                />
-                <label
-                  htmlFor="light/blue"
-                  className={styles.product_color_label}
-                  checked
-                >
-                  <img src="/tshirt.avif" alt="" />
-                </label>
-              </div>
-              <div className={styles.color_wrapper}>
-                <input
-                  type="radio"
-                  name="t_shirt_color"
-                  id="light/dark"
-                  value="light/dark"
-                />
-                <label
-                  htmlFor="light/dark"
-                  className={styles.product_color_label}
-                >
-                  <img src="/h2.jpg" alt="" />
-                </label>
-              </div>
-            </div>
-          </div>
+        <p className={styles.product_price_wrapper}>
+          <span className={styles.strike_price}>₹300</span>
+          <span className={styles.price}>₹126</span>
+        </p>
 
-          <p className={styles.product_price_wrapper}>
-            <span className={styles.strike_price}>₹300</span>
-            <span className={styles.price}>₹126</span>
+        <div className={styles.delevery_avaibility_form}>
+          <form className={styles.delevery_form}>
+            <input
+              type="number"
+              min={6}
+              required
+              placeholder="Enter Your Pincode"
+            />
+
+            <button type="submit">Check</button>
+
+            <div className={styles.availability_message}></div>
+          </form>
+          <p className={styles.available}>Delevery Services Available.</p>
+          <p className={styles.not_available}>
+            Delevery Services Not Available!
           </p>
+
+          <button className={styles.buy_now}>Buy Now</button>
+          <button className={styles.add_to_cart}>Add To Cart</button>
         </div>
       </div>
     </div>

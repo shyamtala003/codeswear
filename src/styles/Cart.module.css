@@ -1,6 +1,6 @@
 .cart {
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 0%;
   opacity: 0;
   left: -100%;
   width: 100%;
@@ -160,7 +160,7 @@ p.product_desc {
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.5s;
-  border: 2px solid;
+  border: 2px solid black;
 }
 
 .icon {
@@ -172,6 +172,37 @@ p.product_desc {
 .checkout_button:hover .icon {
   color: #000;
   background: #fff;
+}
+
+.clear_cart_button {
+  padding: 12px 0px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: transparent;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.5s;
+  border: 2px solid;
+}
+
+.clear_cart_button .icon {
+  color: #000000;
+}
+
+.clear_cart_button:hover {
+  background: #000000;
+  color: #fff;
+}
+
+.clear_cart_button:hover .icon {
+  color: #fff;
 }
 
 @media (max-width: 568px) {

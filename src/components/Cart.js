@@ -2,6 +2,7 @@ import React from "react";
 import { FiTrash } from "react-icons/fi";
 import { BsBagCheck } from "react-icons/bs";
 import { GrClose } from "react-icons/gr";
+import { IoBagRemoveOutline } from "react-icons/io5";
 import styles from "../styles/Cart.module.css";
 import CartToggler from "@/context/CartToggler";
 
@@ -31,7 +32,7 @@ const Cart = () => {
           <div className={styles.cart_items_container}>
             <div className={styles.cart_item}>
               <div className={styles.product_image}>
-                <img src="./tshirt.avif" alt="" />
+                <img src="/tshirt.avif" alt="" />
               </div>
               <div className={styles.product_info}>
                 <div className={styles.title_and_remover}>
@@ -53,7 +54,7 @@ const Cart = () => {
             </div>
             <div className={styles.cart_item}>
               <div className={styles.product_image}>
-                <img src="./tshirt.avif" alt="" />
+                <img src="/tshirt.avif" alt="" />
               </div>
               <div className={styles.product_info}>
                 <div className={styles.title_and_remover}>
@@ -75,7 +76,7 @@ const Cart = () => {
             </div>
             <div className={styles.cart_item}>
               <div className={styles.product_image}>
-                <img src="./tshirt.avif" alt="" />
+                <img src="/tshirt.avif" alt="" />
               </div>
               <div className={styles.product_info}>
                 <div className={styles.title_and_remover}>
@@ -97,7 +98,7 @@ const Cart = () => {
             </div>
             <div className={styles.cart_item}>
               <div className={styles.product_image}>
-                <img src="./tshirt.avif" alt="" />
+                <img src="/tshirt.avif" alt="" />
               </div>
               <div className={styles.product_info}>
                 <div className={styles.title_and_remover}>
@@ -119,7 +120,7 @@ const Cart = () => {
             </div>
             <div className={styles.cart_item}>
               <div className={styles.product_image}>
-                <img src="./tshirt.avif" alt="" />
+                <img src="/tshirt.avif" alt="" />
               </div>
               <div className={styles.product_info}>
                 <div className={styles.title_and_remover}>
@@ -141,7 +142,7 @@ const Cart = () => {
             </div>
             <div className={styles.cart_item}>
               <div className={styles.product_image}>
-                <img src="./tshirt.avif" alt="" />
+                <img src="/tshirt.avif" alt="" />
               </div>
               <div className={styles.product_info}>
                 <div className={styles.title_and_remover}>
@@ -167,9 +168,13 @@ const Cart = () => {
               <p className={styles.subtotal}>SUBTOTAL (3 Items)</p>
               <p className={styles.total_price}>₹329.00</p>
             </div>
-            <div className={styles.checkout_button}>
+            <button className={styles.checkout_button}>
               <BsBagCheck className={styles.icon}></BsBagCheck> CHECKOUT
-            </div>
+            </button>
+            <button className={styles.clear_cart_button}>
+              <IoBagRemoveOutline className={styles.icon} />
+              CLEAR CART
+            </button>
           </div>
         </div>
       </div>
