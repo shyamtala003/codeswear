@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
+import { animateScroll } from "react-scroll";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Options } from "@splidejs/splide";
 import { generateSlides } from "../../utils/generateSlides";
@@ -17,14 +18,40 @@ import "@splidejs/react-splide/css/sea-green";
 import "@splidejs/react-splide/css/core";
 
 const Product = () => {
+  let [product, setProduct] = useState("");
+  let [selectedColor, setSelectedColor] = useState(null);
   let [pincode, setPincode] = useState("");
   let [isServiceable, setisServiceable] = useState(null);
   const mainRef = useRef(null);
   const thumbsRef = useRef(null);
   let router = useRouter();
 
-  useEffect(() => {
+  const fetchProduct = useCallback(async () => {
     let { slug } = router.query;
+    let response = await fetch(`/api/product/${slug}`);
+    response = await response.json();
+    setProduct(response.product);
+    setSelectedColor(response.product.colors[0]);
+  }, [router.query]);
+
+  console.log(product);
+  console.log(selectedColor);
+  function colorSelctionHandler(color) {
+    console.log(color);
+    let getdata = product.colors.filter((item) => {
+      return item.color === color;
+    });
+    setSelectedColor(getdata[0]);
+    animateScroll.scrollToTop({
+      duration: 500, // Set the duration of the scroll animation
+      smooth: true, // Enable smooth scrolling
+    });
+  }
+
+  useEffect(() => {
+    if (router.isReady) {
+      fetchProduct();
+    }
   }, [router.isReady]);
 
   // code for splide slider
@@ -37,15 +64,15 @@ const Product = () => {
   function renderSlides() {
     return (
       <>
-        <SplideSlide key={1}>
-          <img src="/tshirt.avif" alt="" />
-        </SplideSlide>
-        <SplideSlide key={2}>
-          <img src="/t2.webp" alt="" />
-        </SplideSlide>
-        <SplideSlide key={3}>
-          <img src="/t3.jpg" alt="" />
-        </SplideSlide>
+        {selectedColor &&
+          selectedColor.images &&
+          selectedColor.images.map((item) => {
+            return (
+              <SplideSlide key={item}>
+                <img src={item} alt="" />
+              </SplideSlide>
+            );
+          })}
       </>
     );
   }
@@ -120,40 +147,31 @@ const Product = () => {
       </div>
 
       <div className={styles.product_info}>
-        <div className={styles.product_brand}>Nike T-Shirt</div>
+        <div className={styles.product_brand}>{product.brand}</div>
         <div className={styles.product_short_description}>
-          MALBON X NIKE DRI-FIT PLAYER HALF ZIP TOP
+          {product.product_name}
         </div>
         <div className={styles.product_description}>
           <p className={styles.bold_text}>Product Description</p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam
-          ullam laboriosam accusamus voluptatibus in laudantium nulla quod,
-          eveniet maxime nostrum, sequi consequatur amet aperiam, blanditiis
-          deserunt ipsa maiores labore necessitatibus. Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Ex quibusdam amet numquam.
+          {product.description}
         </div>
         <div className={styles.product_heightlights}>
           <p className={styles.bold_text}>Product Highlights</p>
           <ul className={styles.point_list}>
-            <li className={styles.point}>
-              Minimalist and sleek "Breaking Code" chest logo
-            </li>
-            <li className={styles.point}>
-              High-quality and comfortable fabric
-            </li>
-            <li className={styles.point}>
-              Perfect for tech enthusiasts and coding enthusiasts
-            </li>
-            <li className={styles.point}>Soft and breathable feel</li>
-            <li className={styles.point}>
-              Great for coding events and casual occasions
-            </li>
+            {product.product_highlights &&
+              product.product_highlights.map((item) => {
+                return (
+                  <li key={item} className={styles.point}>
+                    {item}
+                  </li>
+                );
+              })}
           </ul>
         </div>
 
         <div className={styles.tags}>
-          <span className={styles.bold_text}>Tags:</span> t-shirt, breaking
-          code, logo, coding, programming, tech
+          <span className={styles.bold_text}>Tags:</span>
+          {product.tags && product.tags.join(", ")}
         </div>
 
         <div className={styles.product_Size_wrapper}>
@@ -164,110 +182,70 @@ const Product = () => {
         </div>
 
         <div className={styles.product_sizes}>
-          <div className={styles.input_group}>
-            <input
-              className={styles.size_radio_btn}
-              type="radio"
-              name="size"
-              id="s"
-              value="s"
-              defaultChecked
-            />
-            <label htmlFor="s" className={styles.size_label}>
-              S
-            </label>
-          </div>
-          <div className={styles.input_group}>
-            <input
-              className={styles.size_radio_btn}
-              type="radio"
-              name="size"
-              id="l"
-              value="l"
-            />
-            <label htmlFor="l" className={styles.size_label}>
-              L
-            </label>
-          </div>
-          <div className={styles.input_group}>
-            <input
-              className={styles.size_radio_btn}
-              type="radio"
-              name="size"
-              id="m"
-              value="m"
-            />
-            <label htmlFor="m" className={styles.size_label}>
-              M
-            </label>
-          </div>
-          <div className={styles.input_group}>
-            <input
-              className={styles.size_radio_btn}
-              type="radio"
-              name="size"
-              id="xl"
-              value="xl"
-            />
-            <label htmlFor="xl" className={styles.size_label}>
-              XL
-            </label>
-          </div>
-          <div className={styles.input_group}>
-            <input
-              className={styles.size_radio_btn}
-              type="radio"
-              name="size"
-              id="xxl"
-              value="xxl"
-            />
-            <label htmlFor="xxl" className={styles.size_label}>
-              XXL
-            </label>
-          </div>
+          {selectedColor &&
+            selectedColor.sizes &&
+            selectedColor.sizes.map((item, index) => {
+              console.log(index);
+              return (
+                <div
+                  key={item.name}
+                  className={`${styles.input_group} ${
+                    item.stock === 0 ? styles.disabled : ""
+                  }`}
+                >
+                  <input
+                    className={styles.size_radio_btn}
+                    type="radio"
+                    name="size"
+                    id={item.name}
+                    value={item.name}
+                    disabled={item.stock > 0 ? false : true}
+                  />
+                  <label htmlFor={item.name} className={styles.size_label}>
+                    {item.name}
+                  </label>
+                </div>
+              );
+            })}
         </div>
 
         <div className={styles.product_colors}>
           <div className={styles.product_color_name}>
-            <span>COLOR:</span> LIGHT/BLUE
+            <span>COLOR:</span> {product && product.colors[0].color}
           </div>
           <div className={styles.color_group}>
-            <div className={styles.color_wrapper}>
-              <input
-                type="radio"
-                name="t_shirt_color"
-                id="light/blue"
-                value="light/blue"
-                defaultChecked
-              />
-              <label
-                htmlFor="light/blue"
-                className={styles.product_color_label}
-                checked
-              >
-                <img src="/tshirt.avif" alt="" />
-              </label>
-            </div>
-            <div className={styles.color_wrapper}>
-              <input
-                type="radio"
-                name="t_shirt_color"
-                id="light/dark"
-                value="light/dark"
-              />
-              <label
-                htmlFor="light/dark"
-                className={styles.product_color_label}
-              >
-                <img src="/h2.jpg" alt="" />
-              </label>
-            </div>
+            {product.colors &&
+              product.colors.map((item) => {
+                return (
+                  <div key={item.color} className={styles.color_wrapper}>
+                    <input
+                      type="radio"
+                      name="t_shirt_color"
+                      id={item.color}
+                      value={item.color}
+                      defaultChecked={
+                        item.color == selectedColor.color ? true : false
+                      }
+                      onClick={() => {
+                        colorSelctionHandler(item.color);
+                      }}
+                    />
+                    <label
+                      htmlFor={item.color}
+                      className={styles.product_color_label}
+                      checked
+                    >
+                      <img src={item.images && item.images[0]} alt="" />
+                    </label>
+                  </div>
+                );
+              })}
           </div>
         </div>
 
         <p className={styles.product_price_wrapper}>
-          <span className={styles.strike_price}>₹300</span>
-          <span className={styles.price}>₹126</span>
+          <span className={styles.strike_price}>₹{product.price * 3}</span>
+          <span className={styles.price}>₹{product.price}</span>
         </p>
 
         <div className={styles.delevery_avaibility_form}>

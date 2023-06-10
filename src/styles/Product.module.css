@@ -1,4 +1,5 @@
 .product_wrapper {
+  scroll-behavior: smooth;
   width: 100%;
   padding: 18px 3%;
   display: grid;
@@ -112,6 +113,23 @@
 
 .size_radio_btn:checked + .size_label {
   border-color: #ec008c;
+}
+
+.disabled {
+  position: relative;
+  opacity: 0.7;
+  overflow: hidden;
+}
+
+.disabled::after {
+  content: "";
+  position: absolute;
+  top: 57%;
+  left: -16px;
+  width: 171%;
+  height: 2px;
+  transform: rotate(217deg);
+  background: rgb(234, 234, 234);
 }
 
 .product_colors {
