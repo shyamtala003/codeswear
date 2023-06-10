@@ -270,3 +270,8 @@ ul.navbar_links {
 .social_link:hover {
   color: #e80071;
 }
+@media screen and (max-width: 558px) {
+  .social_links {
+    padding-bottom: 40px;
+  }
+}
