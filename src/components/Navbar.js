@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Squash as Hamburger, Turn } from "hamburger-react";
 import {
@@ -15,7 +15,24 @@ import CartToggler from "../context/CartToggler";
 const Navbar = () => {
   let [searchText, setsearchText] = useState("");
   const [isOpen, setOpen] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
   const { cart, togglerCart } = CartToggler();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      const visible = prevScrollPos > currentScrollPos;
+      setPrevScrollPos(currentScrollPos);
+      setVisible(visible);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
 
   function handleSearch(e) {
     setsearchText(e.target.value);
@@ -26,7 +43,7 @@ const Navbar = () => {
   }
 
   function toggleMenubar() {
-    // code for removing sccrolling on menu opening
+    // code for removing scrolling on menu opening
     if (!isOpen) {
       document.body.style.overflowY = "hidden";
     } else {
@@ -36,12 +53,14 @@ const Navbar = () => {
   }
 
   return (
-    <nav className={styles.navbar}>
+    <nav
+      className={`${styles.navbar} ${visible ? styles.visible : styles.hidden}`}
+    >
       {/* menu for big screens */}
       <div className={styles.navbar_wrapper}>
         <div className={styles.left_navbar_content}>
           <Link href={"/"} className={styles.logo}>
-            <img src="./logo.png" alt="" />
+            <img src="/logo.png" alt="" />
           </Link>
 
           <div className={styles.navbar_content}>
@@ -180,6 +199,51 @@ const Navbar = () => {
             <li className={styles.navbar_link}>
               <Link href={"/"} className={styles.link} onClick={toggleMenubar}>
                 Mousepads
+              </Link>
+            </li>
+            <li className={styles.navbar_link}>
+              <Link
+                href={"/caps"}
+                className={styles.link}
+                onClick={toggleMenubar}
+              >
+                Caps
+              </Link>
+            </li>
+            <li className={styles.navbar_link}>
+              <Link
+                href={"/caps"}
+                className={styles.link}
+                onClick={toggleMenubar}
+              >
+                Caps
+              </Link>
+            </li>
+            <li className={styles.navbar_link}>
+              <Link
+                href={"/caps"}
+                className={styles.link}
+                onClick={toggleMenubar}
+              >
+                Caps
+              </Link>
+            </li>
+            <li className={styles.navbar_link}>
+              <Link
+                href={"/caps"}
+                className={styles.link}
+                onClick={toggleMenubar}
+              >
+                Caps
+              </Link>
+            </li>
+            <li className={styles.navbar_link}>
+              <Link
+                href={"/caps"}
+                className={styles.link}
+                onClick={toggleMenubar}
+              >
+                Caps
               </Link>
             </li>
             <li className={styles.navbar_link}>

@@ -1,7 +1,9 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Options } from "@splidejs/splide";
 import { generateSlides } from "../../utils/generateSlides";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import { useRouter } from "next/router";
 import styles from "../../styles/Product.module.css";
 // Default theme
@@ -15,14 +17,17 @@ import "@splidejs/react-splide/css/sea-green";
 import "@splidejs/react-splide/css/core";
 
 const Product = () => {
+  let [pincode, setPincode] = useState("");
+  let [isServiceable, setisServiceable] = useState(null);
+  const mainRef = useRef(null);
+  const thumbsRef = useRef(null);
   let router = useRouter();
+
   useEffect(() => {
     let { slug } = router.query;
   }, [router.isReady]);
 
-  const mainRef = useRef(null);
-  const thumbsRef = useRef(null);
-
+  // code for splide slider
   useEffect(() => {
     if (mainRef.current && thumbsRef.current && thumbsRef.current.splide) {
       mainRef.current.sync(thumbsRef.current.splide);
@@ -68,6 +73,30 @@ const Product = () => {
     isNavigation: true,
     transition: "fade", // Add fade transition effect
     speed: 800, // Adjust the speed of the transition
+  };
+
+  // code for checking pin is serviceable or not
+  const pincodeValidationSchema = Yup.object().shape({
+    pincode: Yup.number()
+      .required("Pincode is required")
+      .min(100000, "Pincode must be 6 digits")
+      .max(999999, "Pincode must be 6 digits"),
+  });
+
+  function inputPincodeHandler(e) {
+    setPincode(e.target.value);
+  }
+
+  const checkPinServicibity = async (values, { setSubmitting }) => {
+    const response = await fetch("/api/pincode");
+    const data = await response.json();
+    if (data.message.includes(Number(values.pincode))) {
+      setisServiceable(true);
+      setPincode("");
+    } else {
+      setisServiceable(false);
+    }
+    setSubmitting(false);
   };
 
   return (
@@ -242,23 +271,43 @@ const Product = () => {
         </p>
 
         <div className={styles.delevery_avaibility_form}>
-          <form className={styles.delevery_form}>
-            <input
-              type="number"
-              min={6}
-              required
-              placeholder="Enter Your Pincode"
-            />
+          <Formik
+            initialValues={{ pincode: "" }}
+            validationSchema={pincodeValidationSchema}
+            onSubmit={checkPinServicibity}
+          >
+            {({ isSubmitting }) => (
+              <Form className={styles.delevery_form}>
+                <div className={styles.form_control_group}>
+                  <Field
+                    type="number"
+                    name="pincode"
+                    min={100000}
+                    required
+                    placeholder="Enter Your Pincode"
+                    className={styles.pincode_input}
+                  />
 
-            <button type="submit">Check</button>
-
-            <div className={styles.availability_message}></div>
-          </form>
-          <p className={styles.available}>Delevery Services Available.</p>
-          <p className={styles.not_available}>
-            Delevery Services Not Available!
-          </p>
-
+                  <button type="submit" disabled={isSubmitting}>
+                    Check
+                  </button>
+                </div>
+                <ErrorMessage
+                  name="pincode"
+                  component="div"
+                  className={styles.error_message}
+                />
+              </Form>
+            )}
+          </Formik>
+          {isServiceable == true && isServiceable !== null && (
+            <p className={styles.available}>Delivery Services Available.</p>
+          )}
+          {isServiceable === false && isServiceable !== null && (
+            <p className={styles.not_available}>
+              Delivery Services Not Available!
+            </p>
+          )}
           <button className={styles.buy_now}>Buy Now</button>
           <button className={styles.add_to_cart}>Add To Cart</button>
         </div>

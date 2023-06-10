@@ -203,8 +203,12 @@
 form.delevery_form {
   margin-top: 24px;
   width: 100%;
+}
+
+.form_control_group {
   display: flex;
-  gap: 18px;
+  flex-direction: row;
+  gap: 12px;
 }
 
 .delevery_form input {
@@ -216,6 +220,12 @@ form.delevery_form {
   outline: none;
 }
 
+.delevery_form input[type="number"]::-webkit-inner-spin-button,
+.delevery_form input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .delevery_form button {
   background: #ec008c;
   cursor: pointer;
@@ -225,12 +235,18 @@ form.delevery_form {
   border-radius: 4px;
 }
 
+.error_message {
+  padding-block: 12px;
+  color: red;
+}
+
 p.available {
   padding-block: 12px;
   color: rgb(0, 191, 0);
 }
 
 p.not_available {
+  padding-block: 12px;
   color: red;
 }
 

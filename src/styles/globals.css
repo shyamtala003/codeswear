@@ -87,3 +87,7 @@ img {
 .splide__track--nav > .splide__list > .splide__slide.is-active {
   border: 2px solid #ec008c !important;
 }
+
+.splide__track {
+  margin-top: 16px;
+}

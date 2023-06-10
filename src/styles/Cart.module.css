@@ -136,7 +136,6 @@ p.product_desc {
   flex-direction: column;
   gap: 1rem;
   border-top: 4px solid #dadada;
-  margin-bottom: 60px;
 }
 
 .cart_item_details {
@@ -208,6 +207,9 @@ p.product_desc {
 @media (max-width: 568px) {
   .cart {
     grid-template-columns: 1.2fr minmax(100%, 0.8fr);
+  }
+  .checkout_info {
+    margin-bottom: 60px;
   }
 
   h3.product_name {
