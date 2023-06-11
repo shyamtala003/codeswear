@@ -4,7 +4,7 @@
   padding: 18px 3%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
+  gap: 40px;
 }
 
 .wrapper {
@@ -18,23 +18,24 @@
 }
 
 .product_brand {
-  margin: 24px 0px 8px 0;
-  font-size: 24px;
-  font-weight: 600;
-  text-transform: capitalize;
+  margin: 24px 0px 4px 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(200, 200, 200);
+  text-transform: uppercase;
 }
 
 .product_short_description {
-  text-transform: uppercase;
-  font-weight: 500;
-  margin: 14px 0;
-  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: 600;
+  margin-bottom: 24px;
+  font-size: 24px;
 }
 
 .product_description {
   text-align: justify;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 22px;
 }
 
 .product_description .bold_text {
@@ -59,8 +60,14 @@
   padding-left: 20px;
 }
 
+.point {
+  text-align: justify;
+  font-size: 14px;
+  line-height: 22px;
+}
+
 .tags {
-  margin-top: 14px;
+  margin-top: 18px;
   font-size: 16px;
   text-transform: capitalize;
 }
@@ -119,9 +126,11 @@
   position: relative;
   opacity: 0.7;
   overflow: hidden;
+  cursor: no-drop;
 }
 
 .disabled::after {
+  cursor: no-drop;
   content: "";
   position: absolute;
   top: 57%;
@@ -130,6 +139,11 @@
   height: 2px;
   transform: rotate(217deg);
   background: rgb(234, 234, 234);
+}
+
+.disabled label {
+  color: rgb(234, 234, 234);
+  cursor: no-drop;
 }
 
 .product_colors {

@@ -1,18 +1,12 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import { animateScroll } from "react-scroll";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import { Options } from "@splidejs/splide";
-import { generateSlides } from "../../utils/generateSlides";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
 import styles from "../../styles/Product.module.css";
 // Default theme
 import "@splidejs/react-splide/css";
-
-// or other themes
-import "@splidejs/react-splide/css/skyblue";
-import "@splidejs/react-splide/css/sea-green";
 
 // or only core styles
 import "@splidejs/react-splide/css/core";
@@ -34,10 +28,7 @@ const Product = () => {
     setSelectedColor(response.product.colors[0]);
   }, [router.query]);
 
-  console.log(product);
-  console.log(selectedColor);
   function colorSelctionHandler(color) {
-    console.log(color);
     let getdata = product.colors.filter((item) => {
       return item.color === color;
     });
@@ -170,7 +161,7 @@ const Product = () => {
         </div>
 
         <div className={styles.tags}>
-          <span className={styles.bold_text}>Tags:</span>
+          <span className={styles.bold_text}>Tags: </span>
           {product.tags && product.tags.join(", ")}
         </div>
 
@@ -185,7 +176,6 @@ const Product = () => {
           {selectedColor &&
             selectedColor.sizes &&
             selectedColor.sizes.map((item, index) => {
-              console.log(index);
               return (
                 <div
                   key={item.name}
@@ -226,7 +216,7 @@ const Product = () => {
                       defaultChecked={
                         item.color == selectedColor.color ? true : false
                       }
-                      onClick={() => {
+                      onChange={() => {
                         colorSelctionHandler(item.color);
                       }}
                     />
